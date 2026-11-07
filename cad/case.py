@@ -13,7 +13,7 @@ LENGTH = 70.0
 WIDTH = 45.0
 TOTAL_HEIGHT = 25.0
 WALL = 2.2                    # side-wall thickness; leave room for the PCB
-BASE_HEIGHT = 18.0            # bottom shell height, including its floor
+BASE_HEIGHT = 20.0            # bottom shell height, including its floor
 LID_TOP = 2.0                  # solid material above the OLED/button openings
 LID_SKIRT = 5.0                # lid overlap that slides down over the base
 CLEARANCE = 0.30               # fit clearance between the lid and base
@@ -43,14 +43,15 @@ post_xy = [
     ( LENGTH/2 - POST_INSET, -WIDTH/2 + POST_INSET),
     ( LENGTH/2 - POST_INSET,  WIDTH/2 - POST_INSET),
 ]
-# Posts rise from the floor into the cavity; holes are blind and leave a
-# little material at the bottom. Change post positions to match PCB holes.
+# Posts rise from the floor into the cavity; bores start above the floor and
+# extend past the post tops so each screw hole is open from the cavity side.
+# Change post positions to match PCB holes.
 for x, y in post_xy:
     post = (cq.Workplane("XY").workplane(offset=WALL)
             .center(x, y).circle(POST_D/2).extrude(BASE_HEIGHT - WALL - 1.0))
     bore = (cq.Workplane("XY").workplane(offset=WALL)
             .center(x, y).circle(SCREW_CLEARANCE_D/2)
-            .extrude(BASE_HEIGHT - 2*WALL))
+            .extrude(BASE_HEIGHT - WALL + 1.0))
     base = base.union(post).cut(bore)
 
 # USB cable access centered in one short end wall; the opening begins at the
@@ -60,19 +61,22 @@ usb_cut = (cq.Workplane("YZ").workplane(offset=LENGTH/2 - WALL/2)
            .extrude(WALL + 2.0))
 base = base.cut(usb_cut)
 
-# Lid top sits from z=BASE_HEIGHT to TOTAL_HEIGHT. Its downturned skirt has
-# clearance around the base outer walls. Side clearance is applied per side.
-skirt_outer_l = LENGTH
-skirt_outer_w = WIDTH
-skirt_inner_l = LENGTH - 2 * (WALL + CLEARANCE)
-skirt_inner_w = WIDTH - 2 * (WALL + CLEARANCE)
-lid = (cq.Workplane("XY").workplane(offset=BASE_HEIGHT - LID_SKIRT)
+# The lid top ends at TOTAL_HEIGHT. Its skirt starts below the base top and
+# has an inner opening wider than the base, leaving CLEARANCE on every side.
+lid_bottom = TOTAL_HEIGHT - LID_TOP - LID_SKIRT
+skirt_outer_l = LENGTH + 2 * (WALL + CLEARANCE)
+skirt_outer_w = WIDTH + 2 * (WALL + CLEARANCE)
+skirt_inner_l = LENGTH + 2 * CLEARANCE
+skirt_inner_w = WIDTH + 2 * CLEARANCE
+lid = (cq.Workplane("XY").workplane(offset=lid_bottom)
        .box(skirt_outer_l, skirt_outer_w, LID_SKIRT + LID_TOP,
             centered=(True, True, False)))
-lid = (lid.faces(">Z").workplane()
-       .rect(skirt_inner_l, skirt_inner_w)
-       .cutBlind(-LID_SKIRT))
-# OLED window and button holes go through only the top panel. Their positions
+lid_cavity = (cq.Workplane("XY").workplane(offset=lid_bottom)
+              .box(skirt_inner_l, skirt_inner_w, LID_SKIRT,
+                   centered=(True, True, False)))
+lid = lid.cut(lid_cavity)
+
+# OLED window and button holes go through the top panel. Their positions
 # are measured from the enclosure center; change them to suit your panel.
 lid = (lid.faces(">Z").workplane()
        .center(0, 0).rect(OLED_WINDOW_W, OLED_WINDOW_H)
