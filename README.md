@@ -1,6 +1,6 @@
 # OpenLoom
 
-OpenLoom is a small, offline History flashcard device built around an ESP32 and a 128×64 I²C OLED. It displays one question at a time; press **FLIP** to reveal its answer, then **NEXT** to move through the cards. A short beep confirms each button press. The card deck is stored in the Arduino sketch, so no network connection or companion app is needed.
+OpenLoom is a small, offline History flashcard device built around an ESP32 and a 128×64 I²C OLED. It displays one question at a time; press **FLIP** to reveal its answer, then **NEXT** to move to the next card.
 
 ![OpenLoom project banner](images/banner.svg)
 
@@ -39,7 +39,7 @@ See [`BOM.csv`](BOM.csv) for the parts list. Verify the buzzer's voltage and cur
 | NEXT button | GPIO 19 and GND |
 | Buzzer positive / negative | GPIO 23 / GND |
 
-The buttons use the ESP32's internal pull-up resistors, so each button should connect the indicated GPIO to GND when pressed. Check your OLED pin labels before wiring; do not assume the order of its header pins.
+The buttons use the ESP32's internal pull-up resistors, so each button should connect the indicated GPIO to GND when pressed. Check your OLED pin labels before wiring; do not assume the order of its pins matches the diagram.
 
 ## Build and run
 
@@ -54,6 +54,15 @@ The firmware uses the default SSD1306 I²C address `0x3C`. If your display uses 
 ## Customize the cards
 
 Edit the `cards[]` array near the top of `openloom.ino`. Add entries in the form `{"Question?", "Answer"}`. The firmware chooses a random starting card at boot and advances through the deck from there.
+
+## CAD
+
+Editable CAD (Onshape): https://cad.onshape.com/documents/YOUR-FULL-LINK
+
+## Language composition
+
+- Python: 60.1%
+- C++: 39.9%
 
 ## License
 
