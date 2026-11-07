@@ -1,8 +1,2 @@
 Item,Qty,Supplier,Cost/item,Total Cost,link
-ESP32 DevKit board,1,,,,
-0.96 inch I2C OLED display (SSD1306, 128x64),1,,,,
-Push button (tactile),2,,,,
-Active buzzer (3.3V GPIO-compatible),1,,,,
-Breadboard,1,,,,
-Jumper wires,15,,,,
-USB cable (micro-USB or USB-C to match the board),1,,,,
+Estimated total shipping,1,,,$0.00,
