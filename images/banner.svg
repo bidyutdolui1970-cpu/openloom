@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">OpenLoom offline History flashcards</title>
+  <desc id="desc">Illustration of the OpenLoom ESP32 flashcard device with an OLED question, two buttons, and a buzzer.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102d32"/><stop offset="1" stop-color="#1c5653"/></linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#183b38"/><stop offset="1" stop-color="#0c211f"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#061819" flood-opacity=".42"/></filter>
+  </defs>
+  <rect width="1200" height="560" rx="34" fill="url(#bg)"/>
+  <circle cx="1030" cy="65" r="200" fill="#8acb87" opacity=".08"/>
+  <circle cx="1125" cy="470" r="250" fill="#ffd27b" opacity=".07"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="88" y="174" fill="#c9e8ca" font-size="24" font-weight="700" letter-spacing="5">OFFLINE HISTORY FLASHCARDS</text>
+    <text x="82" y="272" fill="#fff8e9" font-size="88" font-weight="700">OpenLoom</text>
+    <text x="90" y="326" fill="#d5e8dc" font-size="27">A pocket-sized study companion, powered by ESP32.</text>
+    <rect x="90" y="382" width="205" height="56" rx="28" fill="#ffd27b"/>
+    <text x="126" y="419" fill="#173638" font-size="19" font-weight="700">FLIP  ·  NEXT  ·  LEARN</text>
+  </g>
+  <g transform="translate(770 77) rotate(5 170 205)" filter="url(#shadow)">
+    <rect x="0" y="0" width="338" height="414" rx="35" fill="#e6e5d7"/>
+    <rect x="19" y="19" width="300" height="274" rx="16" fill="#203c3b"/>
+    <rect x="30" y="30" width="278" height="252" rx="10" fill="url(#screen)" stroke="#7c9a83" stroke-width="2"/>
+    <text x="52" y="68" fill="#f2d47c" font-family="monospace" font-size="18">CARD 4/7</text>
+    <path d="M52 82H284" stroke="#6e8d77" stroke-width="2"/>
+    <text x="52" y="133" fill="#e6efce" font-family="monospace" font-size="19">Partition of</text>
+    <text x="52" y="163" fill="#e6efce" font-family="monospace" font-size="19">Bengal?</text>
+    <text x="52" y="251" fill="#9bb9a0" font-family="monospace" font-size="14">FLIP: show answer</text>
+    <circle cx="93" cy="344" r="29" fill="#d66e4b" stroke="#b6533c" stroke-width="5"/>
+    <circle cx="174" cy="344" r="29" fill="#5b9c77" stroke="#3b805e" stroke-width="5"/>
+    <circle cx="267" cy="339" r="19" fill="#182d2d"/>
+    <path d="M255 331h8l10-8v32l-10-8h-8z" fill="#f0c967"/>
+    <path d="M278 329q15 10 0 20M282 323q24 16 0 32" fill="none" stroke="#f0c967" stroke-width="3" stroke-linecap="round"/>
+    <text x="78" y="399" fill="#263a37" font-family="Arial, sans-serif" font-size="11" font-weight="700">FLIP</text>
+    <text x="160" y="399" fill="#263a37" font-family="Arial, sans-serif" font-size="11" font-weight="700">NEXT</text>
+  </g>
+  <text x="92" y="510" fill="#a8c9b4" font-family="Arial, Helvetica, sans-serif" font-size="16">ESP32  ·  128×64 OLED  ·  No network required</text>
+</svg>
